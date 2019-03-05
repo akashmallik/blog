@@ -13,6 +13,8 @@
   <link href="{{ asset('frontend/css/bootstrap.css') }}" rel="stylesheet">
 	<link href="{{ asset('frontend/css/swiper.css') }}" rel="stylesheet">
 	<link href="{{ asset('frontend/css/ionicons.css') }}" rel="stylesheet">
+	{{-- Toastr --}}
+	<link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
 	@stack('css')
 </head>
@@ -29,7 +31,10 @@
 	<script src="{{ asset('frontend/js/tether.min.js') }}"></script>
 	<script src="{{ asset('frontend/js/bootstrap.js') }}"></script>
 	<script src="{{ asset('frontend/js/swiper.js') }}"></script>
-  <script src="{{ asset('frontend/js/scripts.js') }}"></script>
+	<script src="{{ asset('frontend/js/scripts.js') }}"></script>
+	{{-- Toastr --}}
+	<script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+  {!! Toastr::message() !!}
   @stack('js')
 
 </body>
