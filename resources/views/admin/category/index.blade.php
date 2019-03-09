@@ -9,7 +9,7 @@
 @section('content')
 <div class="container-fluid">
   <div class="block-header">
-      <a href="{{ route('admin.tag.create') }}" class="btn btn-primary waves-effect"><i class="material-icons">add</i> <span>ADD TAG</span></a>
+      <a href="{{ route('admin.category.create') }}" class="btn btn-primary waves-effect"><i class="material-icons">add</i> <span>ADD CATEGORY</span></a>
   </div>
   <!-- Exportable Table -->
   <div class="row clearfix">
@@ -17,7 +17,7 @@
           <div class="card">
               <div class="header">
                   <h2>
-                      TAG LIST
+                      CATEGORY LIST
                   </h2>
                   <ul class="header-dropdown m-r--5">
                       <li class="dropdown">
@@ -41,21 +41,21 @@
                               </tr>
                           </thead>
                           <tbody>
-                              @foreach ($tags as $key=>$tag)
+                              @foreach ($categories as $key=>$category)
                                 <tr>
                                   <td>{{ $key+1 }}</td>
-                                  <td>{{ $tag->name }}</td>
-                                  <td>{{ $tag->slug }}</td>
-                                  <td>{{ $tag->created_at }}</td>
-                                  <td>{{ $tag->updated_at }}</td>
+                                  <td>{{ $category->name }}</td>
+                                  <td>{{ $category->slug }}</td>
+                                  <td>{{ $category->created_at }}</td>
+                                  <td>{{ $category->updated_at }}</td>
                                   <td class="text-center">
-                                      <a href="{{ route('admin.tag.edit', $tag->id ) }}" class="btn btn-info btn-sm waves-effect">
+                                      <a href="{{ route('admin.category.edit', $category->id ) }}" class="btn btn-info btn-sm waves-effect">
                                           <i class="material-icons">edit</i>
                                       </a>
-                                      <button class="btn btn-danger" onclick="deleteTag({{ $tag->id }})">
+                                      <button class="btn btn-danger" onclick="deleteCategory({{ $category->id }})">
                                           <i class="material-icons">delete</i>
                                       </button>
-                                      <form id="delete-form-{{ $tag->id }}" action="{{ route('admin.tag.destroy', $tag->id) }}" method="POST">
+                                      <form id="delete-form-{{ $category->id }}" action="{{ route('admin.category.destroy', $category->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                       </form>
@@ -90,7 +90,7 @@
   <script src="{{ asset('backend/js/pages/tables/jquery-datatable.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.2.6/dist/sweetalert2.all.min.js"></script>
   <script>
-    function deleteTag(id){
+    function deleteCategory(id){
       const swalWithBootstrapButtons = Swal.mixin({
         confirmButtonClass: 'btn btn-success',
         cancelButtonClass: 'btn btn-danger',
@@ -115,7 +115,7 @@
         ) {
           swalWithBootstrapButtons.fire(
             'Cancelled',
-            'Your data is safe :)',
+            'Your Data is safe :)',
             'error'
           )
         }

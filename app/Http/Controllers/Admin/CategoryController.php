@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Tag;
-use Brian2694\Toastr\Facades\Toastr;
+use App\Category;
 
-class TagController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::latest()->get();
-        return view('admin.tag.index',compact('tags'));
+        $categories = Category::latest()->get();
+        return view('admin.category.index',compact('categories'));
     }
 
     /**
@@ -27,7 +26,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('admin.tag.create');
+        return view('admin.category.create');
     }
 
     /**
@@ -39,14 +38,11 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name'=>'required',
+            'name' => 'required|unique:categories',
+            'img' => 'required|mines:jpeg,jgp,png'
+
         ]);
-        $tag = new Tag();
-        $tag->name = $request->name;
-        $tag->slug = str_slug($request->name);
-        $tag->save();
-        Toastr::success('Successfully Added', 'Success');
-        return redirect()->route('admin.tag.index');
+        return $request;
     }
 
     /**
@@ -68,8 +64,7 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        $tag = Tag::find($id);
-        return view('admin.tag.edit',compact('tag'));
+        //
     }
 
     /**
@@ -81,15 +76,7 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'name'=>'required',
-        ]);
-        $tag = Tag::find($id);
-        $tag->name = $request->name;
-        $tag->slug = str_slug($request->name);
-        $tag->save();
-        Toastr::success('Successfully Updated', 'Success');
-        return redirect()->route('admin.tag.index');
+        //
     }
 
     /**
@@ -100,8 +87,6 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        Tag::find($id)->delete();
-        Toastr::success('Successfully Deleted', 'Success');
-        return redirect()->back();
+        //
     }
 }
