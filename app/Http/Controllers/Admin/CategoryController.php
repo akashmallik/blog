@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
+use Illuminate\Support\Carbon;
+use Illuminate\Validation\Rules\Exists;
+use Illuminate\Support\Facades\Storage;
+use Brian2694\Toastr\Toastr;
 
 class CategoryController extends Controller
 {
@@ -39,10 +43,33 @@ class CategoryController extends Controller
     {
         $this->validate($request,[
             'name' => 'required|unique:categories',
-            'img' => 'required|mines:jpeg,jgp,png'
-
+            // 'image' => 'required|mimes:jpeg,bnp,jgp,png'
         ]);
-        return $request;
+        
+        //get form image
+        $image = $request->file('image');
+        $slug = str_slug($request->name);
+        if(isset($image)){
+            // make unique name for image
+            $currentDate = Carbon::now()->toDateString();
+            $imageName = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+            // check Category directory is Exists
+            if(!Storage::disk('public')->exists('category')){
+                Storage::disk('public')->makeDirectory('category');
+            }
+            Storage::disk('public')->put('category/'.$imageName,$image);
+        }
+        else{
+            $imageName ='default.png';
+        }
+        $category = new Category();
+        $category->name = $request->name;
+        $category->slug = str_slug($request->name);
+        $category->image =$imageName;
+        $category->save();
+        // Toastr::success('category Successfully Saved','Success');
+        // Toastr::success('Successfully Added', 'Success');
+        return redirect()->route('admin.category.index');
     }
 
     /**
@@ -64,7 +91,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('admin.category.edit',compact('category'));
     }
 
     /**
@@ -76,7 +104,35 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required|unique:categories',
+            // 'image' => 'required|mimes:jpeg,bnp,jgp,png'
+        ]);
+        
+        //get form image
+        $image = $request->file('image');
+        $slug = str_slug($request->name);
+        if(isset($image)){
+            // make unique name for image
+            $currentDate = Carbon::now()->toDateString();
+            $imageName = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+            // check Category directory is Exists
+            if(!Storage::disk('public')->exists('category')){
+                Storage::disk('public')->makeDirectory('category');
+            }
+            Storage::disk('public')->put('category/'.$imageName,$image);
+        }
+        else{
+            $imageName ='default.png';
+        }
+        $category = new Category();
+        $category->name = $request->name;
+        $category->slug = str_slug($request->name);
+        $category->image =$imageName;
+        $category->save();
+        // Toastr::success('category Successfully Saved','Success');
+        // Toastr::success('Successfully Added', 'Success');
+        return redirect()->route('admin.category.index');
     }
 
     /**

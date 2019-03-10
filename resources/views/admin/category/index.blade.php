@@ -35,6 +35,7 @@
                                   <th>Id</th>
                                   <th>Name</th>
                                   <th>Slug</th>
+                                  <th>Image</th>
                                   <th>Created At</th>
                                   <th>Updated At</th>
                                   <th>Action</th>
@@ -46,6 +47,7 @@
                                   <td>{{ $key+1 }}</td>
                                   <td>{{ $category->name }}</td>
                                   <td>{{ $category->slug }}</td>
+                                  <td><img src="{{ $category->img }}" alt="{{ $category->name }}" width="50" height="40"></td>
                                   <td>{{ $category->created_at }}</td>
                                   <td>{{ $category->updated_at }}</td>
                                   <td class="text-center">
