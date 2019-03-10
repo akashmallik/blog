@@ -47,7 +47,7 @@
                                   <td>{{ $key+1 }}</td>
                                   <td>{{ $category->name }}</td>
                                   <td>{{ $category->slug }}</td>
-                                  <td><img src="{{ $category->img }}" alt="{{ $category->name }}" width="50" height="40"></td>
+                                  <td><img src="category/slider/{{ $category->image }}" alt="{{ $category->name }}" width="50" height="40"></td>
                                   <td>{{ $category->created_at }}</td>
                                   <td>{{ $category->updated_at }}</td>
                                   <td class="text-center">
