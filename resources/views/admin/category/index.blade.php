@@ -17,7 +17,7 @@
           <div class="card">
               <div class="header">
                   <h2>
-                      CATEGORY LIST
+                      CATEGORY LIST <span class="badge bg-blue">{{ $categories->count() }}</span>
                   </h2>
                   <ul class="header-dropdown m-r--5">
                       <li class="dropdown">
@@ -35,6 +35,7 @@
                                   <th>Id</th>
                                   <th>Name</th>
                                   <th>Slug</th>
+                                  <th>Post Count</th>
                                   <th>Image</th>
                                   <th>Created At</th>
                                   <th>Updated At</th>
@@ -47,6 +48,7 @@
                                   <td>{{ $key+1 }}</td>
                                   <td>{{ $category->name }}</td>
                                   <td>{{ $category->slug }}</td>
+                                  <td>{{ $category->posts->count() }}</td>
                                   <td><img src="category/slider/{{ $category->image }}" alt="{{ $category->name }}" width="50" height="40"></td>
                                   <td>{{ $category->created_at }}</td>
                                   <td>{{ $category->updated_at }}</td>
