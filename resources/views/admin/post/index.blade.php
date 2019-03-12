@@ -67,13 +67,16 @@
                                   <td>{{ $post->created_at }}</td>
                                   <td>{{ $post->updated_at }}</td>
                                   <td class="text-center">
+                                      <a href="{{ route('admin.post.show', $post->id ) }}" class="btn btn-info btn-sm waves-effect">
+                                          <i class="material-icons">visibility</i>
+                                      </a>
                                       <a href="{{ route('admin.post.edit', $post->id ) }}" class="btn btn-info btn-sm waves-effect">
                                           <i class="material-icons">edit</i>
                                       </a>
                                       <button class="btn btn-danger" onclick="deletePost({{ $post->id }})">
                                           <i class="material-icons">delete</i>
                                       </button>
-                                      <form id="delete-form-{{ $post->id }}" action="{{ route('admin.category.destroy', $post->id) }}" method="POST">
+                                      <form id="delete-form-{{ $post->id }}" action="{{ route('admin.post.destroy', $post->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                       </form>

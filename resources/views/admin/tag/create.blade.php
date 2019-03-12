@@ -2,8 +2,6 @@
 
 
 @push('css')
-  <!-- JQuery DataTable Css -->
-  <link href="{{ asset('backend/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}" rel="stylesheet">   
 @endpush
 
 @section('content')
