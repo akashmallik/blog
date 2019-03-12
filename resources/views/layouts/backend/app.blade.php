@@ -82,13 +82,11 @@
 	<script src="{{ asset('backend/plugins/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
 	<!-- Waves Effect Plugin Js -->
 	<script src="{{ asset('backend/plugins/node-waves/waves.js') }}"></script>
+	<!-- Custom Js -->
+  <script src="{{ asset('backend/js/admin.js') }}"></script>
 	{{-- Toastr --}}
 	<script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 	{!! Toastr::message() !!}
-
-	
-		
-
 	<script>
 		@if ($errors->any())
 		@foreach ($errors->all() as $error)

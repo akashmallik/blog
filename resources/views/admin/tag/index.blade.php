@@ -88,7 +88,6 @@
   <script src="{{ asset('backend/plugins/jquery-datatable/extensions/export/buttons.html5.min.js') }}"></script>
   <script src="{{ asset('backend/plugins/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script>
   <!-- Custom Js -->
-  <script src="{{ asset('backend/js/admin.js') }}"></script>
   <script src="{{ asset('backend/js/pages/tables/jquery-datatable.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.2.6/dist/sweetalert2.all.min.js"></script>
   <script>
