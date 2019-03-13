@@ -75,6 +75,12 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+            <li class="{{ Request::is('author/post*') ? 'active':''}}">
+                <a href="{{ route("author.post.index") }}">
+                    <i class="material-icons">apps</i>
+                    <span>Post</span>
+                </a>
+            </li>
             <li class="header">SYSTEM</li>
             <li>
                 <a class="dropdown-item" href="{{ route('logout') }}" 
