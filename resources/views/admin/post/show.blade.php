@@ -11,10 +11,14 @@
     <!-- Vertical Layout | With Floating Label -->
     <a href="{{ route('admin.post.index') }}" class="btn btn-danger waves-effect">BACK</a>
     @if ($post->is_approved == false)
-        <button class="btn btn-success pull-right" type="button">
+        <button class="btn btn-success pull-right waves-effect" type="button" onclick="approvePost(),{{ $post->id}}">
             <i class="material-icons">done</i>
             <span>Approve</span>
         </button>
+        <form action="{{ route('admin.post.approve',$post->id)}}" method="POST" id="approval-form" style="display:none;">
+            @csrf
+            @method('PUT')
+        </form>
     @else
         <button class="btn btn-success pull-right" type="button" disabled>
             <i class="material-icons">done</i>
@@ -84,11 +88,12 @@
 @push('js')
 <!-- TinyMCE -->
 <script src="{{ asset('backend/plugins/tinymce/tinymce.js') }}"></script>
+<!-- sweetalert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.2.6/dist/sweetalert2.all.min.js"></script>
 <!-- Custom Js -->
-{{-- <script src="{{ asset('backend/js/pages/forms/editors.js') }}"></script> --}}
 <script>
+    //TinyMCE
     $(function () {
-        //TinyMCE
         tinymce.init({
             selector: "textarea#tinymce",
             theme: "modern",
@@ -106,5 +111,37 @@
         tinymce.suffix = ".min";
         tinyMCE.baseURL = '{{ asset("backend/plugins/tinymce") }}';
     });
+    //sweetalert
+    function approvePost(id){
+     const swalWithBootstrapButtons = Swal.mixin({
+       confirmButtonClass: 'btn btn-success',
+       cancelButtonClass: 'btn btn-danger',
+       buttonsStyling: false,
+     })
+
+     swalWithBootstrapButtons.fire({
+       title: 'Are you sure?',
+       text: "You want to approve this post!",
+       type: 'warning',
+       showCancelButton: true,
+       confirmButtonText: 'Yes, approve it!',
+       cancelButtonText: 'No, cancel!',
+       reverseButtons: true
+     }).then((result) => {
+       if (result.value) {
+         event.preventDefault();
+         document.getElementById('approval-form').submit();
+       } else if (
+         // Read more about handling dismissals
+         result.dismiss === Swal.DismissReason.cancel
+       ) {
+         swalWithBootstrapButtons.fire(
+           'Cancelled',
+           'The post remains pending :)',
+           'info'
+         )
+       }
+     })
+   }
 </script>
 @endpush

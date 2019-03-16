@@ -39,7 +39,7 @@
             </li>
             <li class="{{ Request::is('admin/tag*') ? 'active':''}}">
                 <a href="{{ route("admin.tag.index") }}">
-                    <i class="material-icons">label</i>
+                    <i class="material-icons">local_offer</i>
                     <span>Tag</span>
                 </a>
             </li>
@@ -51,8 +51,20 @@
             </li>
             <li class="{{ Request::is('admin/post*') ? 'active':''}}">
                 <a href="{{ route("admin.post.index") }}">
-                    <i class="material-icons">apps</i>
+                    <i class="material-icons">assignment</i>
                     <span>Post</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('admin/pending/post') ? 'active':''}}">
+                <a href="{{ route("admin.post.pending") }}">
+                    <i class="material-icons">assignment</i>
+                    <span>Pending Post</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('admin/subscriber') ? 'active':''}}">
+                <a href="{{ route("admin.subscribe.index") }}">
+                    <i class="material-icons">subscriptions</i>
+                    <span>Subscribers</span>
                 </a>
             </li>
             <li class="header">SYSTEM</li>
@@ -77,7 +89,7 @@
             </li>
             <li class="{{ Request::is('author/post*') ? 'active':''}}">
                 <a href="{{ route("author.post.index") }}">
-                    <i class="material-icons">apps</i>
+                    <i class="material-icons">assignment</i>
                     <span>Post</span>
                 </a>
             </li>

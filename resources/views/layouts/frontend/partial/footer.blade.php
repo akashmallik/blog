@@ -5,7 +5,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="footer-section">
 
-          <a class="logo" href="#">Blog App</a>
+          <a class="logo" href="#"><h4 class="title"><b>Blog App</b></h4></a>
           <p class="copyright">Bona @ 2017. All rights reserved.</p>
           <p class="copyright">Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
           <ul class="icons">
@@ -40,8 +40,9 @@
 
           <h4 class="title"><b>SUBSCRIBE</b></h4>
           <div class="input-area">
-            <form>
-              <input class="email-input" type="text" placeholder="Enter your email">
+            <form action="{{ route('subscriber.store') }}" method="POST">
+              @csrf
+              <input class="email-input" type="email" name="email" placeholder="Enter your email">
               <button class="submit-btn" type="submit"><i class="icon ion-ios-email-outline"></i></button>
             </form>
           </div>
