@@ -34,6 +34,8 @@ Route::group(['as'=>'admin.','prefix' => 'admin','namespace'=>'Admin','middlewar
     Route::get('pending/post', 'PostController@pending')->name('post.pending');
     Route::put('post/{id}/approve', 'PostController@approval')->name('post.approve');
     Route::get('favorite','FavoriteController@index')->name('favorite.index');
+    Route::get('comments','CommentController@index')->name('comment.index');
+    Route::delete('comments','CommentController@destroy')->name('comment.destroy');
     Route::get('subscriber','SubscriberController@index')->name('subscribe.index');
     Route::delete('subscriber/{id}','SubscriberController@destroy')->name('subscribe.destroy');
 });
@@ -45,4 +47,6 @@ Route::group(['as'=>'author.','prefix' => 'author','namespace'=>'Author','middle
     Route::put('profile-update','SettingsController@updateProfile')->name('profile.update');
     Route::put('password-update','SettingsController@updatePassword')->name('password.update');
     Route::get('favorite','FavoriteController@index')->name('favorite.index');
+    Route::get('comments','CommentController@index')->name('comment.index');
+    Route::delete('comments','CommentController@destroy')->name('comment.destroy');
 });
