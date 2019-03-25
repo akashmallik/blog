@@ -1,5 +1,7 @@
 <?php
 
+use App\Category;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,11 +13,13 @@
 |
 */
 
+Auth::routes();
 Route::get('/','HomeController@index')->name('home');
 Route::get('posts','PostController@index')->name('post.index');
 Route::get('post/{slug}','PostController@details')->name('post.details');
-
-Auth::routes();
+Route::get('category/{slug}','PostController@postByCategory')->name('category.posts');
+Route::get('tag/{slug}','PostController@postByTag')->name('tag.posts');
+Route::get('search','PostController@search')->name('search');
 
 Route::post('dashboard','SubscriberController@store')->name('subscriber.store');
 
@@ -49,4 +53,10 @@ Route::group(['as'=>'author.','prefix' => 'author','namespace'=>'Author','middle
     Route::get('favorite','FavoriteController@index')->name('favorite.index');
     Route::get('comments','CommentController@index')->name('comment.index');
     Route::delete('comments','CommentController@destroy')->name('comment.destroy');
+});
+
+
+view()->composer('layouts.frontend.partial.footer', function ($view) {
+    $categories = Category::all();
+    $view->with('categories',$categories);
 });

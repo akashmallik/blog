@@ -5,7 +5,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="footer-section">
 
-          <a class="logo" href="#"><h4 class="title"><b>Blog App</b></h4></a>
+          <a class="logo" href="#"><h4 class="title"><b>{{ config('app.name') }}</b></h4></a>
           <p class="copyright">Bona @ 2017. All rights reserved.</p>
           <p class="copyright">Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
           <ul class="icons">
@@ -23,14 +23,10 @@
           <div class="footer-section">
           <h4 class="title"><b>CATAGORIES</b></h4>
           <ul>
-            <li><a href="#">BEAUTY</a></li>
-            <li><a href="#">HEALTH</a></li>
-            <li><a href="#">MUSIC</a></li>
-          </ul>
-          <ul>
-            <li><a href="#">SPORT</a></li>
-            <li><a href="#">DESIGN</a></li>
-            <li><a href="#">TRAVEL</a></li>
+            @foreach ($categories as $category)
+            <li><a href="{{ route('category.posts',$category->slug) }}">{{ $category->name }}</a></li>
+                
+            @endforeach
           </ul>
         </div><!-- footer-section -->
       </div><!-- col-lg-4 col-md-6 -->

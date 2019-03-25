@@ -17,7 +17,7 @@
 @section('content')
 <div class="slider">
     <div class="display-table  center-text">
-        <h1 class="title display-table-cell"><b>DESIGN</b></h1>
+        <h1 class="title display-table-cell"><b>{{ $post->title }}</b></h1>
     </div>
 </div><!-- slider -->
 
@@ -51,7 +51,7 @@
 
                         <ul class="tags">
                             @foreach ($post->tags as $tags)
-                            <li><a href="#">{{ $tags->name }}</a></li>
+                            <li><a href="{{ route('tag.posts',$tags->slug) }}">{{ $tags->name }}</a></li>
                             @endforeach
                         </ul>
                     </div><!-- blog-post-inner -->
@@ -92,10 +92,8 @@
                 <div class="single-post info-area">
 
                     <div class="sidebar-area about-area">
-                        <h4 class="title"><b>ABOUT BONA</b></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur
-                            Ut enim ad minim veniam</p>
+                        <h4 class="title"><b>ABOUT AUTHOR</b></h4>
+                        <p>{{ $post->user->about }}</p>
                     </div>
 
                     {{-- <div class="sidebar-area subscribe-area">

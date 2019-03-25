@@ -83,7 +83,7 @@
                                 Description
                             </div>
                             <div class="content">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.
+                                {{ Auth::user()->about }}
                             </div>
                         </li>
                     </ul>

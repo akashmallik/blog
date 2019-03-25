@@ -58,7 +58,7 @@ class CategoryController extends Controller
                 Storage::disk('public')->makeDirectory('category/poster');
             }
             // resize image for category poster and upload
-            $poster = Image::make($image)->resize(1600,480)->save($imageName);
+            $poster = Image::make($image)->resize(1600,480)->save('$imageName');
             Storage::disk('public')->put('category/poster/'.$imageName,$poster);
 
             // check Category directory is Exists
@@ -66,7 +66,7 @@ class CategoryController extends Controller
                 Storage::disk('public')->makeDirectory('category/slider');
             }
             // resize image for category slider and upload
-            $slider = Image::make($image)->resize(500,350)->save($imageName);
+            $slider = Image::make($image)->resize(500,350)->save('$imageName');
             Storage::disk('public')->put('category/slider/'.$imageName,$slider);
         }
         else{

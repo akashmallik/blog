@@ -46,7 +46,7 @@
                                   <td>{{ $post->favorite_to_users->count() }}</td>
                                   <td>{{ $post->view_count }}</td>
                                   <td class="text-center">
-                                      <a href="{{ route('admin.post.show', $post->id ) }}" class="btn btn-info btn-sm waves-effect">
+                                      <a href="{{ route('post.details', $post->slug ) }}" target="_blank" class="btn btn-info btn-sm waves-effect">
                                           <i class="material-icons">visibility</i>
                                       </a>
                                       <button class="btn btn-danger" onclick="removePost({{ $post->id }})">
