@@ -35,49 +35,49 @@
                               </tr>
                           </thead>
                           <tbody>
-                              @foreach ($comments as $comment)
-                                <tr>
-                                  <td>
-                                    <div class="media">
-                                      <div class="media-left">
-                                        <a href="">
-                                          <img src="{{ Storage::disk('public')->url('Profile/').$comment->user->image }}" alt="" width="40" height="40">
-                                        </a>
-                                      </div>
-                                      <div class="media-body">
-                                        <h4 class="media-heading">{{ $comment->user->name }} <small>{{ $comment->created_at->diffForHumans() }}</small></h4>
-                                        <p>{!! $comment->comment !!}</p>
-                                        <a target="_blank" href="{{ route('post.details',$comment->post->slug.'#comments') }}">Reply</a>
-                                      </div>
+                            @foreach ($comments as $comment)
+                              <tr>
+                                <td>
+                                  <div class="media">
+                                    <div class="media-left">
+                                      <a href="">
+                                        <img src="{{ Storage::disk('public')->url('Profile/').$comment->user->image }}" alt="" width="40" height="40">
+                                      </a>
                                     </div>
-                                  </td>
-                                  <td>
-                                    <div class="media">
-                                      <div class="media-left">
-                                        <a href="">
-                                          <img src="{{ Storage::disk('public')->url('post/').$comment->post->image }}" alt="" width="40" height="40">
-                                        </a>
-                                      </div>
-                                      <div class="media-body">
-                                        <h4 class="media-heading">
-                                          <a target="_blank" href="{{ route('post.details',$comment->post->slug) }}">{{ $comment->post->title }}</a>
-                                          <small>{{ $comment->post->created_at->diffForHumans() }}</small>
-                                        </h4>
-                                        <p>{!! $comment->post->body !!}</p>
-                                      </div>
+                                    <div class="media-body">
+                                      <h4 class="media-heading">{{ $comment->user->name }} <small>{{ $comment->created_at->diffForHumans() }}</small></h4>
+                                      <p>{!! $comment->comment !!}</p>
+                                      <a target="_blank" href="{{ route('post.details',$comment->post->slug.'#comments') }}">Reply</a>
                                     </div>
-                                  </td>
-                                  <td class="text-center">
-                                      <button class="btn btn-danger" onclick="removeComment({{ $comment->id }})">
-                                          <i class="material-icons">delete</i>
-                                      </button>
-                                      <form id="remove-form-{{ $comment->id }}" action="{{ route('admin.comment.destroy', $comment->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                      </form>
-                                  </td>
-                                </tr>
-                              @endforeach
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="media">
+                                    <div class="media-left">
+                                      <a href="">
+                                        <img src="{{ Storage::disk('public')->url('post/').$comment->post->image }}" alt="" width="40" height="40">
+                                      </a>
+                                    </div>
+                                    <div class="media-body">
+                                      <h4 class="media-heading">
+                                        <a target="_blank" href="{{ route('post.details',$comment->post->slug) }}">{{ $comment->post->title }}</a>
+                                        <small>{{ $comment->post->created_at->diffForHumans() }}</small>
+                                      </h4>
+                                      <p>{!! $comment->post->body !!}</p>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-danger" onclick="removeComment({{ $comment->id }})">
+                                        <i class="material-icons">delete</i>
+                                    </button>
+                                    <form id="remove-form-{{ $comment->id }}" action="{{ route('admin.comment.destroy', $comment->id) }}" method="POST">
+                                      @csrf
+                                      @method('DELETE')
+                                    </form>
+                                </td>
+                              </tr>
+                            @endforeach
                           </tbody>
                       </table>
                   </div>
@@ -123,7 +123,7 @@
       }).then((result) => {
         if (result.value) {
           event.preventDefault();
-          document.getElementById('remove-form-'+{{ $comment->id }}).submit();
+          document.getElementById('remove-form-'+id).submit();
         } else if (
           // Read more about handling dismissals
           result.dismiss === Swal.DismissReason.cancel

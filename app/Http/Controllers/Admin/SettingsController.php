@@ -22,7 +22,7 @@ class SettingsController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'email' => 'required|email',
-            'image' => 'required|image',
+            'image' => 'image',
         ]);
         $image = $request->file('image');
         $slug = str_slug($request->name);
@@ -44,7 +44,7 @@ class SettingsController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->image = $imageName;
-        // $user->about = $request->about;
+        $user->about = $request->about;
         $user->save();
         Toastr::success('Profile Successfully Updated','Success');
         return redirect()->back();
@@ -72,8 +72,5 @@ class SettingsController extends Controller
             Toastr::error('Current password not matched','Error');
             return redirect()->back();
         }
-
     }
-
-
 }
